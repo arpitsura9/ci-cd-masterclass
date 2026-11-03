@@ -6,11 +6,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/welcome")
+@RequestMapping("/api")
 public class WelcomeController {
 
-    @GetMapping
+    @GetMapping("/welcome")
     public ResponseEntity<String> welcome(){
         return ResponseEntity.ok("Welcome to Spring Boot Application");
+    }
+
+    @GetMapping("/bye")
+    public ResponseEntity<String> byebye(){
+        return ResponseEntity.ok("Bye Bye from Spring Boot Application");
     }
 }
