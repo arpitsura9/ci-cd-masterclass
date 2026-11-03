@@ -34,8 +34,10 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Building Docker Image
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest .
-
+        run: |
+          IMAGE="${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest"
+          echo "Building Docker image..."
+          docker build --file ./Dockerfile --tag "$IMAGE" .
       - name: Push Image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
 
